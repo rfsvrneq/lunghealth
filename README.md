@@ -1,5 +1,3 @@
-# bi2024
-
 ### vue版本
 vue 3.3.4
 nuxt 3.7.4
@@ -26,4 +24,3 @@ npm run generate:dev
 ### 自動載入環境變數與配置
 .env.dve / .env.local / .env.prod
 package.json 對應 scripts.js 讀取設定檔# bi
-# bi2024
