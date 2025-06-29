@@ -71,7 +71,7 @@ div#lund(class="imp_event" data-title="lungcancercare" data-label="imp_section-l
         small.block 諮詢：陳育民醫師、陸教義醫師、徐培菘醫師       整理：康健雜誌
 
       .content-p.text-right.mt-5
-        a.text-green-200.underline(href="")
+        a.text-green-200.underline(href="#", class="hover:text-green-300")
           img(src="/assets/img/icon-1.svg" alt="觀看更多", class="w-[18px] inline mr-2 -mt-1")
           | 觀看更多
 

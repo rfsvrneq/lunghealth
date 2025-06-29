@@ -14,7 +14,7 @@ div
   Intro
 
   //- 地圖
-  //- Map2
+  Map2
 
   //- ESGforHealth
   Esg

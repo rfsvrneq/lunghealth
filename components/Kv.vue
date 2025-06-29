@@ -3,7 +3,7 @@
 <template lang="pug">
 div#kv.pt-20(class="imp_event" data-title="lungcancercare" data-label="imp_section-lungcancercare-home")
   .clouds
-  img.block.-mt-10.z-10(src="/assets/img/kv-ttl.svg", alt="百靈佳殷格翰", class="w-11/12 sm:w-10/12 max-w-[800px]")
+  img.block.-mt-8.z-10(src="/assets/img/kv-ttl.svg", alt="百靈佳殷格翰", class="w-11/12 sm:w-10/12 max-w-[780px]")
   p.font-garamond(class="text-3xl sm:text-4xl") # Do one thing for Taiwan
   .font-serif.font-semibold.px-8.tracking-wider.leading-relaxed(class="text-justify md:text-left text-xl xs:text-2xl")
     p(class="inline md:block") 人活著離不開乾淨的空氣，但空氣卻變成潛在健康殺手。
