@@ -24,11 +24,11 @@ Transition(name="modal")
   left: 0
   width: 100%
   height: 100%
-  background-color: rgba(#444138, 0.1)
+  background-color: rgba(#444138, .85)
   display: flex
   justify-content: center
   align-items: center
-  z-index: 100
+  z-index: 99
 
 .modal-content
   background-color: white

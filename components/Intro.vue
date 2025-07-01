@@ -1,9 +1,9 @@
 <script setup></script>
 
 <template lang="pug">
-div#intro(class="imp_event" data-title="lungcancercare" data-label="imp_section-lungcancercare-noun")
+div#intro(class="imp_event" data-title="lunghealth" data-label="imp_section-lunghealth-intro")
   .container
-    h3.content-ttl.text-green-700
+    h3.content-ttl.text-green-700(data-aos="fade-ind")
       span.block(class="xs:inline") 空氣品質雖有逐年改善 
       span.text-orange-200 慢性肺部疾病
       | 仍是健康威脅
@@ -20,7 +20,7 @@ div#intro(class="imp_event" data-title="lungcancercare" data-label="imp_section-
   .w-full.bg-green-900
     .container.flex.justify-between(class="flex-col lg:flex-row p-0")
       .flex.flex-col.justify-center(class="p-10 lg:p-0")
-        h3.content-ttl.text-green-200.mb-5(class="lg:text-[30px]") 2025《康健》與百靈佳殷格翰合作倡議
+        h3.content-ttl.text-green-200.mb-5(class="lg:text-[30px]" data-aos="fade-ind") 2025《康健》與百靈佳殷格翰合作倡議
         p.content-p
           span.inline(class="sm:block text-center lg:text-left") 邀請22縣市首長共同許下守護市民健康的承諾，
           span.inline(class="sm:block text-center lg:text-left") 一起為生活在台灣這塊土地上的人做一件事情，

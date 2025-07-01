@@ -15,7 +15,7 @@
       }
 
       #heart {
-        animation: heartbeat 6s ease-in-out infinite both;
+        animation: heartbeat 5s ease-in-out infinite both;
         transform-origin: 53% 52%
       }
 
@@ -24,9 +24,10 @@
           transform: scale(1);
         }
         45% {
-          transform: scale(.93);
+          transform: scale(.85);
         }
       }
+
     </style>
   </defs>
   <g id="_切" data-name="切">

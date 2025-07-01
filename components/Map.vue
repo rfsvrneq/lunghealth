@@ -1,6 +1,7 @@
 <script setup>
-import TaiwanMap from "./TaiwanMap.vue";
-import { mayors } from "@/composables/useMayors";
+import { mayors } from "@/composables/useMayors"; // 引入 mayors 地圖資料
+import mayorsSvg from "~/assets/img/mayors.svg?raw"; // 把 SVG 檔案當作字串引入
+import Modal from "./Modal.vue"; // 新增 Modal 元件
 
 // 動態圖片載入
 const getImageUrl = (name) => {
@@ -11,17 +12,25 @@ const getImageUrl = (name) => {
   return assets[`/assets/img/${name}`];
 };
 
-// 呼叫一次 gsap 實體
-const gsap = useGSAP();
+// 地圖容器
+const mapContainer = ref(null);
 
-// 建立地圖 refs 陣列
-const mapRefs = ref([]);
+// Modal 狀態
+const showModal = ref(false);
+const modalContent = ref("");
 
-// 動態綁定多個地圖 ref 元素
-const setMap = (index) => (el) => {
-  if (el) mapRefs.value[index] = el;
+// 開啟 Modal，這裡改成讀取 item.promise
+const openModal = (promise) => {
+  showModal.value = true;
+  modalContent.value = promise;
 };
 
+// 關閉 Modal
+const closeModal = () => {
+  showModal.value = false;
+};
+
+// ---------視差滾動效果---------
 // scrollTrigger 參數
 // trigger：指定觸發的 DOM 元素
 // start：何時開始觸發動畫 當元素的位置(top/bottom/center)到達視窗的位置(top/bottom/center)時
@@ -30,85 +39,190 @@ const setMap = (index) => (el) => {
 // scrub: true        // 動畫會隨著滾動同步（立即跟隨）
 // scrub: 2           // 動畫會「平滑延遲 2 秒」跟隨滾動
 
+// GSAP 初始化
+const gsap = useGSAP(); // 呼叫一次 gsap 實體
+const main = ref(); // GSAP Context 的作用域
+let ctx; // 儲存 GSAP Context 回傳的物件
+
+const zoomFactor = 1.015; // 統一放大倍率
+
+// 使用 onMounted 來初始化 GSAP Context
 onMounted(() => {
-  mapRefs.value.forEach((el, index) => {
-    gsap.fromTo(
-      el,
-      {
-        marginTop: "-150vh",
-        opacity: 0,
-      },
-      {
-        marginTop: "-150vh",
-        opacity: 1,
+  ctx = gsap.context((self) => {
+    // 始隱藏所有 SVG shape + label
+    mayors.forEach((item) => {
+      const els = self.selector(`#${item.id}_shape, #${item.id}_label`);
+      gsap.set(els, { autoAlpha: 0 });
+    });
+
+    // 使用 ScrollTrigger 來監控滾動事件
+    mayors.forEach((item, idx) => {
+      const els = self.selector(`#${item.id}_shape, #${item.id}_label`);
+      gsap.to(els, {
+        autoAlpha: 1,
+        duration: 0.8,
         scrollTrigger: {
-          trigger: el,
-          start: "top 80%",
-          end: "top 20%",
-          // scrub: "2",
-          toggleActions: "play none none reverse",
+          trigger: self.selector(".mayors")[idx],
+          start: "top 70%",
+          end: "center center",
+          toggleActions: "play reverse play reverse",
+          // markers: true,
+          // scrub: 2,
+          onEnter: () => {
+            const svgEl = document.querySelector("#mayors_svg");
+            const shapeEl = svgEl.querySelector(`#${item.id}_shape`);
+            const bb = shapeEl.getBBox();
+
+            // shape 中心點
+            const cx = bb.x + bb.width / 2;
+            const cy = bb.y + bb.height / 2;
+
+            // 取原始 viewBox
+            const [vx, vy, vw, vh] = svgEl
+              .getAttribute("viewBox")
+              .split(" ")
+              .map(Number);
+
+            // 新的寬高
+            const newW = vw / zoomFactor;
+            const newH = vh / zoomFactor;
+
+            // 計算以 (cx,cy) 為中心的新視窗左上角
+            let newX = cx - newW / 2;
+            let newY = cy - newH / 2;
+
+            // —— clamp 到合法範圍，避免跑出外面 ——
+            const minX = vx;
+            const maxX = vx + vw - newW;
+            const minY = vy;
+            const maxY = vy + vh - newH;
+            newX = Math.max(minX, Math.min(newX, maxX));
+            newY = Math.max(minY, Math.min(newY, maxY));
+
+            const vb = [newX, newY, newW, newH].join(" ");
+            gsap.to(svgEl, {
+              attr: { viewBox: vb },
+              duration: 0.8,
+              ease: "linear",
+            });
+          },
+          onLeaveBack: () => {
+            // 回到全圖
+            gsap.to("#mayors_svg", {
+              attr: { viewBox: "0 0 2013 1132.31" },
+              duration: 0.8,
+            });
+          },
         },
-      }
-    );
-  });
+      });
+    });
+  }, main.value);
+});
+
+// 3.組件卸載時，清除 GSAP Context
+onUnmounted(() => {
+  ctx.revert(); // 卸載清除動畫
 });
 </script>
 
 <template lang="pug">
+section#pledges(ref="main" class="imp_event" data-title="lunghealth" data-label="imp_section-lunghealth-pledges")
 
-h2.text-5xl 開始滾動開始滾動開始滾動開始滾動開始滾動
-h2.text-5xl 開始滾動開始滾動開始滾動開始滾動開始滾動
-h2.text-5xl 開始滾動開始滾動開始滾動開始滾動開始滾動
+  .mayors-map(ref="mapContainer" v-html="mayorsSvg")
 
-//- 地圖滾動區塊
-.parallax_map_container(v-for="(item, index) in mayors" :key="index" :ref="setMap(index)")
-  .parallax_map_bg
-    img(:src="getImageUrl(item.map)")
-
-  .parallax_map
-    .promise
-      span.text-2xl.text-green-300 {{ item.county }}
-      h2.text-3xl.text-green-700.mb-5 {{ item.declaration }}
-      img.mx-auto(:src="getImageUrl(item.photo)" :alt="item.title" class="w-8/12 lg:w-10/12")
-
-h2.text-5xl 結束滾動結束滾動結束滾動結束滾動結束滾動
-h2.text-5xl 結束滾動結束滾動結束滾動結束滾動結束滾動
-h2.text-5xl 結束滾動結束滾動結束滾動結束滾動結束滾動
-    
+  .text-gray-600
+    div.mayors(v-for="(item, index) in mayors" :key="index" class="imp_event" data-title="lunghealth" :data-label="`imp_section-lunghealth-${item.id}`")
+      span.county {{ item.county }}
+      p.mayor.mt-4(v-html="item.mayor")
+      img.photo.block(:src="getImageUrl(item.photo)" :alt="item.title" class="w-full")
+      h2.declaration {{ item.declaration }}
+      .content-p.text-right.mt-2
+        //- useMayors，點擊帶入 promise
+        a.text-green-200.underline(href="#" @click.prevent="openModal(item.promise)", class="hover:text-green-800")
+          img(src="/assets/img/icon-1.svg" alt="觀看更多", class="w-[18px] inline mr-2 -mt-1 ")
+          | 觀看更多
+        
+    //- 引入 Modal
+    Modal(:show="showModal" :content="modalContent" @close="closeModal")
+ 
 </template>
 
 <style scoped lang="sass">
-
-.parallax_map_container
-  width: 100%
-  height: 400vh
+@import '~/assets/sass/media.sass'
+@import '~/assets/sass/colors.sass'
+#pledges
   position: relative
+  background: #021615
 
-
-.parallax_map
+.mayors-map
   width: 100%
-  height: 100%
-  position: absolute
-  pointer-events: none
-  z-index: 1
-
-.promise
-  width: 460px
-  height: min-content
-  padding: 2rem
-  background-color: rgba(white, .85)
-  margin-top: 5%
-  margin-right: 5%
-  margin-left: auto
-
-
-.parallax_map_bg
-  width: 100%
-  height: 100vh
-  position: sticky
+  height: 105vh
   top: 0
-  img
-    width: 100%
-    height: 100%
-    object-fit: cover
+  right: 0
+  bottom: 0
+  left: 0
+  z-index: 0
+  pointer-events: none
+  position: sticky
+  overflow: hidden
+  +m-768
+    height: 85vh
+  +m-480
+    top: 73px
+    height: 40vh
+
+.mayors
+  background-color: rgba(white, 0.85)
+  max-width: 380px
+  width: 90%
+  margin-left: auto
+  margin-right: 10%
+  padding: 1.5rem
+  position: relative
+  text-align: center
+  margin-top: 50vh
+  margin-bottom: 50vh
+  z-index: 19
+  &:last-child
+    margin-bottom: 0
+  @for $i from 17 through 19
+    &:nth-child(#{$i})
+      margin-right: auto
+      margin-left: 10%
+  +m-1200
+    margin-right: 2%
+    max-width: 350px
+    @for $i from 17 through 19
+      &:nth-child(#{$i})
+        margin-left: 2%
+  +m-1024
+    max-width: 300px
+  +m-768
+    margin-left: auto
+    margin-right: auto
+    margin-top: 100vh
+    margin-bottom: 100vh
+    @for $i from 17 through 19
+      &:nth-child(#{$i})
+        margin-left: auto
+  .photo
+    filter: saturate(0.75)
+  .county
+    background-color: $green-200
+    color: white
+    font-size: 1.35rem
+    letter-spacing: .5rem
+    padding-left: 1rem
+    padding-right: .5rem
+    position: absolute
+    left: 0
+    top: 0
+  .mayor
+    font-size: 2rem
+    font-weight: bold
+  .declaration
+    font-size: 1.35rem
+    color: $gray-800
+    padding-top: .5rem
+    text-align: left
 </style>

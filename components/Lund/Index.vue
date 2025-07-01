@@ -8,17 +8,17 @@ const tabs = ref([
   {
     key: "lung", // 用作內部邏輯與元件對應
     title: "肺功能檢測", // 顯示用文字
-    label: "click-lung",
+    label: "click-lunghealth-tab-function",
   },
   {
     key: "xray",
     title: "胸部X光",
-    label: "click-xray",
+    label: "click-lunghealth-tab-xray",
   },
   {
     key: "ldct",
     title: "低劑量電腦斷層（LDCT）",
-    label: "click-ldct",
+    label: "click-lunghealth-tab-ldct",
   },
 ]);
 
@@ -37,10 +37,10 @@ const tabComponents = {
 </script>
 
 <template lang="pug">
-div#lund(class="imp_event" data-title="lungcancercare" data-label="imp_section-lungcancercare-noun")
+div#lund(class="imp_event" data-title="lunghealth" data-label="imp_section-lunghealth-lund")
   .lund-bg
     .container
-      .content-ttl.mb-8(class="text-[36px] md:text-[40px]")
+      .content-ttl.mb-8(class="text-[36px] md:text-[40px]" data-aos="fade-in")
         h3 護肺生活自救對策
         p.text-xl.mt-2 三種預防篩檢工具，及早搶救肺健康
 
@@ -51,13 +51,13 @@ div#lund(class="imp_event" data-title="lungcancercare" data-label="imp_section-l
 
   .tool-bg
     .container
-      .content-ttl.leading-normal.text-center.mb-5
+      .content-ttl.leading-normal.text-center.mb-5(data-aos="fade-in")
         img(src="/assets/img/icon-2.svg" alt="肺部檢查3大工具比較", class="w-[22px] inline mr-2 -mt-2")
         h3.inline 肺部檢查3大工具比較
 
       //- TAB
       .tabs-table.flex.items-stretch
-        div.click_event.w-full.text-center.py-2.flex.justify-center.items-center(v-for='(tab, index) in tabs' :key='index' @click='changeTab(tab.key)' :class="{ 'active': activeTab === tab.key }", data-title="pfizermigraine2024", :data-label="tab.label")
+        div.click_event.w-full.text-center.py-2.flex.justify-center.items-center(v-for='(tab, index) in tabs' :key='index' @click='changeTab(tab.key)' :class="{ 'active': activeTab === tab.key }", data-title="lunghealth", :data-label="tab.label")
           span.content-p.px-2 {{ tab.title }}
       .tabs-table-content
         //- activeTab 顯示對應的子元件
@@ -71,16 +71,16 @@ div#lund(class="imp_event" data-title="lungcancercare" data-label="imp_section-l
         small.block 諮詢：陳育民醫師、陸教義醫師、徐培菘醫師       整理：康健雜誌
 
       .content-p.text-right.mt-5
-        a.text-green-200.underline(href="#", class="hover:text-green-300")
+        a.text-green-200.underline.click_event(href="https://www.commonhealth.com.tw/article/90631", target="_blank", data-title="lunghealth", data-label="click-lunghealth-article-commonhealth-90631", class="hover:text-green-300 focus:text-green-300")
           img(src="/assets/img/icon-1.svg" alt="觀看更多", class="w-[18px] inline mr-2 -mt-1")
           | 觀看更多
 
     .container.pt-0
-      .content-ttl.leading-normal.text-center.mb-5
+      .content-ttl.leading-normal.text-center.mb-5(data-aos="fade-in")
         img(src="/assets/img/icon-3.svg" alt="健康呼吸！上班族遠離空污的超實用指南", class="w-[38px] inline mr-2 -mt-1")
         h3.inline 健康呼吸！上班族遠離空污的超實用指南
 
-      iframe.aspect-video.w-full.max-w-4xl.mx-auto(src="https://www.youtube.com/embed/fx8QYP2EEms?si=f3oFAwbwV5lI5IXw", title="YouTube video player", frameborder="0", allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share", referrerpolicy="strict-origin-when-cross-origin", allowfullscreen)
+      iframe.aspect-video.w-full.max-w-4xl.mx-auto(src="https://www.youtube.com/embed/BI8LWVA7tGU?si=UoYpffVU86eXhTJg", title="YouTube video player", frameborder="0", allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share", referrerpolicy="strict-origin-when-cross-origin", allowfullscreen)
 
 
 </template>

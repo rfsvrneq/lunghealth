@@ -1,6 +1,12 @@
 <script setup>
 const nav = [
   {
+    title: "首頁",
+    active: false,
+    type: "#kv",
+    label: "menu_首頁",
+  },
+  {
     title: "前言倡議",
     active: false,
     type: "#intro",
@@ -63,9 +69,9 @@ const moveTo = (ta) => {
 </script>
 
 <template lang="pug">
-div#topbar(:class="['w-full fixed top-0 left-0 z-20', { scrolled: scrollActive }]")
+div#topbar(:class="['w-full fixed top-0 left-0', { scrolled: scrollActive }]")
   
-  nav.flex.justify-between.items-center.h-full.container.py-0
+  nav.flex.justify-between.items-center.h-full.container.py-0.px-4
     
     .flex.space-x-2.items-center.mr-6
       //- logo
@@ -113,6 +119,8 @@ $nav-item-a-hover-mobile: white !default
   padding-top: 0.5rem
   padding-bottom: 0.5rem
   height: auto
+  z-index: 20
+
   &.scrolled
     background-color: rgba(#3d4b4b, 0.5)
     backdrop-filter: blur(10px)

@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted } from "vue";
-import Slide from "@/components/Slide/index.vue";
+// import Slide from "@/components/Slide/index.vue";
 </script>
 
 <template lang="pug">
@@ -14,7 +14,7 @@ div
   Intro
 
   //- 地圖
-  Map2
+  Map
 
   //- ESGforHealth
   Esg
