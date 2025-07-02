@@ -67,7 +67,7 @@ onMounted(() => {
           end: "center center",
           toggleActions: "play reverse play reverse",
           // markers: true,
-          // scrub: 2,
+          // scrub: true,
           onEnter: () => {
             const svgEl = document.querySelector("#mayors_svg");
             const shapeEl = svgEl.querySelector(`#${item.id}_shape`);
@@ -156,7 +156,8 @@ section#pledges(ref="main" class="imp_event" data-title="lunghealth" data-label=
 
 .mayors-map
   width: 100%
-  height: 105vh
+  // height: 105vh
+  height: calc(var(--vh, 1vh) * 105)
   top: 0
   right: 0
   bottom: 0
@@ -166,10 +167,10 @@ section#pledges(ref="main" class="imp_event" data-title="lunghealth" data-label=
   position: sticky
   overflow: hidden
   +m-768
-    height: 85vh
+    height: calc(var(--vh, 1vh) * 85)
   +m-480
     top: 73px
-    height: 45vh
+    height: calc(var(--vh, 1vh) * 45)
 
 .mayors
   background-color: rgba(white, 0.85)
