@@ -184,8 +184,6 @@ section#pledges(ref="main" class="imp_event" data-title="lunghealth" data-label=
   margin-top: 50vh
   margin-bottom: 50vh
   z-index: 19
-  &:last-child
-    margin-bottom: 0
   @for $i from 17 through 19
     &:nth-child(#{$i})
       margin-right: auto

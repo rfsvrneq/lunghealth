@@ -47,4 +47,5 @@ div#esg(class="imp_event" data-title="lunghealth" data-label="imp_section-lunghe
     background-size: cover
     .container
       min-height: 80vh
+      margin-top: -50vh
 </style>
