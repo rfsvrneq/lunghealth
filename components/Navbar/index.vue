@@ -167,7 +167,7 @@ $nav-item-a-hover-mobile: white !default
         .first, .last
           background: $burger
         .middle
-          opacity: 0
+          opacity: 0 !important
         .first
           top: 13px
           transform: rotate(45deg)
