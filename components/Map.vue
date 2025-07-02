@@ -44,7 +44,7 @@ const gsap = useGSAP(); // 呼叫一次 gsap 實體
 const main = ref(); // GSAP Context 的作用域
 let ctx; // 儲存 GSAP Context 回傳的物件
 
-const zoomFactor = 1.015; // 統一放大倍率
+const zoomFactor = 1.018; // 統一放大倍率
 
 // 使用 onMounted 來初始化 GSAP Context
 onMounted(() => {
@@ -169,7 +169,7 @@ section#pledges(ref="main" class="imp_event" data-title="lunghealth" data-label=
     height: 85vh
   +m-480
     top: 73px
-    height: 40vh
+    height: 45vh
 
 .mayors
   background-color: rgba(white, 0.85)
@@ -200,8 +200,8 @@ section#pledges(ref="main" class="imp_event" data-title="lunghealth" data-label=
   +m-768
     margin-left: auto
     margin-right: auto
-    margin-top: 100vh
-    margin-bottom: 100vh
+    margin-top: 50vh
+    margin-bottom: 50vh
     @for $i from 17 through 19
       &:nth-child(#{$i})
         margin-left: auto
