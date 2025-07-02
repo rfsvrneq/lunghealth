@@ -33,6 +33,7 @@ div#esg(class="imp_event" data-title="lunghealth" data-label="imp_section-lunghe
   background-size: cover
   .container
     min-height: 560px
+    margin-top: -50vh
   +m-1024
     background: linear-gradient(180deg, rgba(#444138, 0) 55%, rgba(#444138, 1) 100%), url(/assets/img/esg-bg.jpg)
     background-position: center
@@ -47,5 +48,4 @@ div#esg(class="imp_event" data-title="lunghealth" data-label="imp_section-lunghe
     background-size: cover
     .container
       min-height: 80vh
-      margin-top: -50vh
 </style>
