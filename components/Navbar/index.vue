@@ -189,6 +189,7 @@ $nav-item-a-hover-mobile: white !default
       transform: translateY(-100%)
       transition: transform .4s ease, opacity .4s ease
       background-color: $nav-wrap-bg-mobile
+      min-height: 100vh
 
       // open
       &.active

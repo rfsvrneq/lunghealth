@@ -36,6 +36,8 @@ div#kv.pt-20(class="imp_event" data-title="lunghealth" data-label="imp_section-l
     animation-delay: -5s
   +m-768
     justify-content: space-evenly
+  +m-480
+    height: 85vh
 
 @keyframes kv-zoom
   from
