@@ -19,7 +19,7 @@ div#intro(class="imp_event" data-title="lunghealth" data-label="imp_section-lung
 
   .w-full.bg-green-900
     .container.flex.justify-between(class="flex-col lg:flex-row p-0")
-      .flex.flex-col.justify-center(class="px-8 py-10 lg:px-10 lg:py-0")
+      .flex.flex-col.justify-center(class="px-8 py-10 lg:px-0 lg:py-0")
         h3.content-ttl.text-green-200.mb-5(class="lg:text-[30px]" data-aos="fade-right" data-aos-duration="800" data-aos-delay="600") 2025《康健》與百靈佳殷格翰合作倡議
         p.content-p(data-aos="fade-right" data-aos-duration="800" data-aos-delay="600")
           span.inline(class="sm:block text-center lg:text-left") 邀請22縣市首長共同許下守護市民健康的承諾，
