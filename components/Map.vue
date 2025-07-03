@@ -126,7 +126,11 @@ onUnmounted(() => {
 </script>
 
 <template lang="pug">
+
+
 section#pledges(ref="main" class="imp_event" data-title="lunghealth" data-label="imp_section-lunghealth-pledges")
+  .container.py-0
+    h2.content-ttl.text-left.text-white.absolute.z-10.pt-10 22縣市首長許諾
 
   .mayors-map(ref="mapContainer" v-html="mayorsSvg")
 

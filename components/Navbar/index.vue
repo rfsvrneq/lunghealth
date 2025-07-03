@@ -69,6 +69,11 @@ const moveTo = (ta) => {
 </script>
 
 <template lang="pug">
+//- top
+a#top(@click.prevent="moveTo('#kv')") 
+  img(src="/assets/img/top.svg", alt="TOP")
+
+
 div#topbar(:class="['w-full fixed top-0 left-0', { scrolled: scrollActive }]")
   
   nav.flex.justify-between.items-center.h-full.container.py-0.px-4
@@ -234,4 +239,23 @@ $nav-item-a-hover-mobile: white !default
           top: 10px
         .last
           bottom: 10px
+
+#top
+  position: fixed
+  bottom: 10%
+  right: 1rem
+  width: 45px
+  height: 45px
+  z-index: 20
+  display: flex
+  justify-content: center
+  align-items: center
+  background-color: #5faf74
+  border-radius: 50%
+  cursor: pointer
+  img
+    width: 50%
+  &:hover, &:focus
+    background-color: #4a8f5f
+    transition: background-color .3s ease
 </style>
