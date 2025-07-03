@@ -6,7 +6,7 @@ onMounted(async () => {
   // 真實專案可改成等待 API/資源載入
   setTimeout(() => {
     isLoading.value = false;
-  }, 1000);
+  }, 800);
 });
 </script>
 
