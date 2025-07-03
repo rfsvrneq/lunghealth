@@ -169,6 +169,9 @@ section#pledges(ref="main" class="imp_event" data-title="lunghealth" data-label=
   pointer-events: none
   position: sticky
   overflow: hidden
+  +m-480
+    top: 73px
+    height: calc(var(--vh, 1vh) * 100 - 73px)
 
 .mayors
   background-color: rgba(white, 0.85)
