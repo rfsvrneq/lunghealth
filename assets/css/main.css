@@ -16,7 +16,7 @@
   }
 
   .content-p {
-    @apply font-normal text-left tracking-wider leading-relaxed text-[19px] md:text-[20px];
+    @apply font-normal text-left tracking-wider leading-relaxed text-[20px];
   }
 
   .content-ttl {
