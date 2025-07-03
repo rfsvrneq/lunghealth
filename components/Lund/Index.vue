@@ -38,20 +38,20 @@ const tabComponents = {
 
 <template lang="pug">
 div#lund(class="imp_event" data-title="lunghealth" data-label="imp_section-lunghealth-lund")
-  .lund-bg
+  .lund-bg(data-aos="fade-left" data-aos-duration="800")
     .container
-      .content-ttl.mb-8(class="text-[36px] md:text-[40px]" data-aos="fade-in")
+      .content-ttl.mb-8(class="text-[36px] md:text-[40px]" data-aos="fade-up" data-aos-duration="800" data-aos-delay="500")
         h3 護肺生活自救對策
         p.text-xl.mt-2 三種預防篩檢工具，及早搶救肺健康
 
-      .content-p.leading-normal
+      .content-p.leading-normal(data-aos="fade-up" data-aos-duration="800" data-aos-delay="600")
         p 肺是人體呼吸的總樞紐，一旦肺臟失序則身體大亂，對健康將有危害。守護肺部健康，除了要戒菸和遠離空氣中瀰漫的各種隠形危機，健康檢查也是必須的。
         p.mt-5 想知道肺健不健康，可藉由肺功能檢查、胸部X光及低劑量電腦斷層（LDCT）來檢測。
 
 
   .tool-bg
     .container
-      .content-ttl.leading-normal.text-center.mb-5(data-aos="fade-in")
+      .content-ttl.leading-normal.text-center.mb-5
         img(src="/assets/img/icon-2.svg" alt="肺部檢查3大工具比較", class="w-[22px] inline mr-2 -mt-2")
         h3.inline 肺部檢查3大工具比較
 

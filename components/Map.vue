@@ -171,7 +171,7 @@ section#pledges(ref="main" class="imp_event" data-title="lunghealth" data-label=
   overflow: hidden
   +m-480
     top: 73px
-    height: calc(var(--vh, 1vh) * 85)
+    // height: calc(var(--vh, 1vh) * 85)
 
 .mayors
   background-color: rgba(white, 0.85)

@@ -11,7 +11,7 @@ div
   Kv
 
   //- 引言
-  Intro
+  Intro.overflow-x-hidden
 
   //- 地圖
   Map
@@ -20,7 +20,7 @@ div
   Esg
 
   //- 肺健康實踐
-  Lund
+  Lund.overflow-x-hidden
 
   //- FOOTER
   Footer

@@ -41,7 +41,7 @@ div#kv.pt-20(class="imp_event" data-title="lunghealth" data-label="imp_section-l
   from
     transform: scale(1)
   to
-    transform: scale(1.25)
+    transform: scale(1.3)
 
 
 // 雲飄移效果
@@ -57,7 +57,7 @@ div#kv.pt-20(class="imp_event" data-title="lunghealth" data-label="imp_section-l
   bottom: 0
   z-index: 1
   will-change: transform, background-position // GPU 加速
-  animation: move-background 30s linear infinite
+  animation: move-background 25s linear infinite
   animation-delay: -10s
 
 @keyframes move-background
