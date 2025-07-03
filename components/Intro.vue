@@ -37,25 +37,14 @@ div#intro(class="imp_event" data-title="lunghealth" data-label="imp_section-lung
   background-size: cover
 
 .underline-ani
-  display: inline-block          // 讓定位參考寬度和文字一樣
-  position: relative
-
-  &::after
-    content: ''                  // 生成底線元素
-    position: absolute
-    left: 0
-    bottom: 3px
-    width: 100%
-    height: 2px                 // 底線粗細，可自行調整
-    background-color: #E27659   // 底線顏色
-    // steps(1, start)：只切一格，從起點就跳到下一張影格
-    animation: blink-underline 2s steps(1, start) infinite
+  text-decoration: underline
+  text-decoration-color: #E27659  // 底線顏色
+  text-decoration-thickness: 2px  // 底線粗細，可調
+  animation: blink-underline 1.5s ease infinite
 
 @keyframes blink-underline
-  // 0–49%：完全不透明（顯示）
   0%, 49%
-    opacity: 1
-  // 50–100%：完全透明（隱藏）
+    text-decoration-color: #E27659
   50%, 100%
-    opacity: 0
+    text-decoration-color: transparent // 底線隱藏
 </style>
